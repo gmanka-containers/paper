@@ -1,4 +1,8 @@
-FROM quay.io/fedora/fedora-minimal
+ARG TARGETARCH
+FROM quay.io/fedora/fedora-minimal AS base-amd64
+FROM quay.io/fedora/fedora-minimal AS base-arm64
+FROM docker.io/fedorariscv/base AS base-riscv64
+FROM base-${TARGETARCH}
 EXPOSE 25565/tcp 25565/udp
 ENV JDK_JAVA_OPTIONS="-Xmx8g"
 RUN dnf install -y java-latest-openjdk-headless jq
