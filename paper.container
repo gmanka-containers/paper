@@ -1,0 +1,10 @@
+[Container]
+Image=quay.io/gmanka/paper:latest
+Volume=paper-data:/app/data:z
+
+[Service]
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
+
